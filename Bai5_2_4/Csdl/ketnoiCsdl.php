@@ -1,8 +1,10 @@
 <?php
+    //sử dụng mysqli
+    //$conn = mysqli_connect($servername, $username, $password,$database_name);
     try
     {
         $conn = new PDO("mysql:host=localhost;dbname=D13CNPM;charset=utf8","root","");
-        $conn->query("SET NAMES UTF8");
+        $conn->query("SET NAMES UTF8");//thiết lập làm việc với unicode utf8(quan trọng)
     }
     catch(PDOException $ex)
     {

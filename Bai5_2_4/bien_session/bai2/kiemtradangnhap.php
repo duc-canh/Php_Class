@@ -9,8 +9,6 @@
 <body>
     <?php
         if(isset($_SESSION["logined"])==false || isset($_SESSION["logined"]) == ""){
-
-       
     ?>
     <h3 color="red">Bạn chưa đăng nhập</h3>
     <a href="login.php">Mời đăng nhập</a>

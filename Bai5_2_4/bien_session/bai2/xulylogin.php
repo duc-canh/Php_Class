@@ -9,18 +9,32 @@
 <body>
     <h2>Xử lý login</h2>
     <?php
+        include('C:/xampp/htdocs/Php_Class/Bai5_2_4/Csdl/ketnoiCsdl.php');
         session_start();
         $user = $_REQUEST["user"];
         $pass = $_REQUEST["tPassword"];
-        if($user == "admin" && $pass="123456"){
-            $_SESSION["logined"] = "OK";
-            $_SESSION["user"] = $user;
-            echo "<h3>Đăng nhập thành công</h3>";
-            echo "<h3>Mời vào trang <a href=\"admin.php\">Admin</a></h3>";
-        }else{
-            echo "<h3>Đăng nhập không thành công</h3>";
-            echo "<h3>Mời đăng nhập lại <a href=\"login.php\">Login</a></h3>";
+        $sql = "SELECT * FROM tb where username = '$user' AND password = '$pass'";
+        $pdo_stm = $conn->prepare($sql);
+        $ketqua = $pdo_stm->execute();
+        if($ketqua == false){
+            echo '<h3>Lỗi câu lệnh sql</h3>';
         }
+        $sobanghi = $pdo_stm->rowCount();
+        if($sobanghi > 0){
+            $row = $pdo_stm->fetch(PDO::FETCH_BOTH);
+            $_SESSION["logined"] = "OK";
+            $_SESSION["user"] = $row["username"];//lấy giá trị cột username
+            $_SESSION["hoten"] = $row["hoten"];
+            echo "<h3> ĐĂNG NHẬP THÀNH CÔNG</h3>";
+            echo "<a href=\"Admin.php\"> Vào Trang Admin</a>";
+        }
+        else
+        {
+            $_SESSION["logined"] = "";
+            echo "<h3> ĐĂNG NHẬP SAI TÀI KHOẢN</h3>";
+            echo "<a href=\"Login.php\"> Mời Đăng nhập</a>";
+        }
+        //ket noi co su du lieu để đăng nhập
     ?>
 </body>
 </html>

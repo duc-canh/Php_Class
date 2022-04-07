@@ -21,7 +21,6 @@
                 echo "<h3>Bạn chưa nhập đủ thông tin</h3>";
                 echo "<h3><a href='themnv.php'>Quay lại trang nhập</a></h3>";
                 die();
-               
             }
             echo $dienthoai." : ".$hoten." : ".$gioitinh." : ".$hinhanh." : ";
             $sql ="INSERT INTO tbNhanvien VALUES(NULL,?,?,?,?)";
