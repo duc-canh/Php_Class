@@ -12,17 +12,13 @@
     <h1 style="text-align: center; color: #090;">DANH SÁCH NHÂN VIÊN</h1>
     <p><a href="ThemNV.php">thêm nhân viên</a></p>
     <?php
-require("KetnoiCSDL.php");
-$sql = "SELECT * FROM tbNhanvien";
-$pdo_stm = $conn->prepare($sql);
-$ketqua = $pdo_stm->execute();
-if($ketqua==FALSE)
-	die("<h3>Lỗi SQL</h3>");
-if($pdo_stm->rowCount()<=0)
-	die("<h3>CHƯA CÓ DỮ LIỆU</h3>");
-$rows = $pdo_stm->fetchAll();
-//print_r($rows);
-?>
+    require_once("tbNhanvien.php");
+    $rows = getListNhanvien();
+    if($rows == null){
+        echo '<h3>Lỗi hệ thống</h3>';
+        die();
+    }
+    ?>
 
     <table width="1009" border="1" align="center" cellpadding="0" cellspacing="0">
         <tr>
@@ -54,10 +50,7 @@ onClick="return confirm('chắc chắn xóa?');">Xóa</a>
   <?php
   }
   ?>
-
-
     </table>
-
 </body>
 
 </html>

@@ -7,6 +7,7 @@
         {
             $conn = new PDO("mysql:host=localhost;dbname=D13CNPM;charset=utf8","root","");
             $conn->query("SET NAMES UTF8");//thiết lập làm việc với unicode utf8(quan trọng)
+            return $conn;
         }
         catch(PDOException $ex)
         {
